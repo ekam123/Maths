@@ -7,24 +7,42 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AdditionQuestion.h"
+#import "InputHandler.h"
+#import "ScoreKeeper.h" 
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        while (1) {
-            NSLog(@"Print a number: ");
-            char input[255];
-            fgets(input, 255, stdin);
+        BOOL gameON = YES;
+        ScoreKeeper *score = [[ScoreKeeper alloc] init];
+        
+        while (gameON) {
             
-            NSString *theInput = [NSString stringWithCString:input encoding:NSUTF8StringEncoding];
+            AdditionQuestion *question1 = [[AdditionQuestion alloc] init];
+            NSLog(@"%@", [question1 question]);
         
-            //getting rid of whitespace
-            theInput = [theInput stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            NSLog(@"%@kjerkj", theInput);
-                        
+            
+            InputHandler *userInput = [[InputHandler alloc] init];
+            NSString *theInput = [userInput handleUserInput:@"What is the answer: "];
+            
+            if ([theInput isEqualToString:@"quit"]) {
+                gameON = NO;
+                break;
+            }
+            
+            NSInteger userAnswer = [theInput intValue];
+           
+            if (userAnswer == [question1 answer]) {
+                [score setRight: [score right] + 1];
+            }
+            else {
+                [score setWrong: [score wrong] + 1]; 
+            }
+            NSLog(@"%@", [score giveScore]);
+        
+        
         }
-        
-        
     }
     return 0;
 }
