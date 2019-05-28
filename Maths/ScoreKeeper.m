@@ -26,4 +26,12 @@
     return theScore;
 }
 
+- (void) incrementRight {
+    self.right = self.right + 1;
+}
+
+- (void) incrementWrong {
+    self.wrong = self.wrong + 1; 
+}
+
 @end

@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)giveScore;
 
+- (void) incrementRight;
+
+- (void) incrementWrong;
+
 @end
 
 NS_ASSUME_NONNULL_END

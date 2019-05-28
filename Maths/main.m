@@ -34,10 +34,10 @@ int main(int argc, const char * argv[]) {
             NSInteger userAnswer = [theInput intValue];
            
             if (userAnswer == [question1 answer]) {
-                [score setRight: [score right] + 1];
+                [score incrementRight];
             }
             else {
-                [score setWrong: [score wrong] + 1]; 
+                [score incrementWrong]; 
             }
             NSLog(@"%@", [score giveScore]);
         
