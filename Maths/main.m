@@ -10,8 +10,21 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        
+        while (1) {
+            NSLog(@"Print a number: ");
+            char input[255];
+            fgets(input, 255, stdin);
+            
+            NSString *theInput = [NSString stringWithCString:input encoding:NSUTF8StringEncoding];
+        
+            //getting rid of whitespace
+            theInput = [theInput stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            NSLog(@"%@kjerkj", theInput);
+                        
+        }
+        
+        
     }
     return 0;
 }
