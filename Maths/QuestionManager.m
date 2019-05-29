@@ -19,8 +19,24 @@
     return self;
 }
 
--(void)addQuestions:(AdditionQuestion *)question{
+-(void)addQuestions:(Question *)question{
     [self.questions addObject:question]; 
+}
+
+
+-(int)totalTime {
+    int totalTime = 0;
+    for (Question *quest in self.questions) {
+        double tmpTime = [quest answerTime];
+        totalTime = round(totalTime + tmpTime);
+    }
+    return totalTime; 
+}
+
+-(NSString *)timeOutput {
+    int totalSeconds = self.totalTime;
+    int averageTime = totalSeconds / round([self.questions count]);
+    return [NSString stringWithFormat:@"total time: %ds, average time: %ds", totalSeconds, averageTime];
 }
 
 @end

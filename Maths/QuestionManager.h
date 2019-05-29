@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AdditionQuestion.h"
+#import "Question.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property NSMutableArray *questions; 
 
--(void)addQuestions:(AdditionQuestion *)question;
+-(void)addQuestions:(Question *)question;
+
+-(NSString *)timeOutput;
+
+-(int)totalTime; 
 
 @end
 

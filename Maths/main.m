@@ -7,27 +7,31 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AdditionQuestion.h"
+#import "Question.h"
 #import "InputHandler.h"
 #import "ScoreKeeper.h"
 #import "QuestionManager.h"
+#import "AdditionQuestion.h"
+#import "SubtractionQuestion.h"
+#import "DivisionQuestion.h"
+#import "MultiplicationQuestion.h"
+#import "QuestionFactory.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         BOOL gameON = YES;
-        QuestionManager *questionList = [[QuestionManager alloc] init];
+        QuestionManager *questionManager = [[QuestionManager alloc] init];
         ScoreKeeper *score = [[ScoreKeeper alloc] init];
         InputHandler *userInput = [[InputHandler alloc] init];
+        QuestionFactory *questionFactory = [[QuestionFactory alloc] init];
         
         while (gameON) {
             
-            AdditionQuestion *question1 = [[AdditionQuestion alloc] init];
-//            [[questionList questions] addObject:question1];
-            [questionList addQuestions:question1]; 
+            Question *question1 = [questionFactory generateRandomQuestion];
+            [questionManager addQuestions:question1];
             NSLog(@"%@", [question1 question]);
         
-            
             
             NSString *theInput = [userInput handleUserInput:@"What is the answer: "];
             
@@ -39,16 +43,15 @@ int main(int argc, const char * argv[]) {
             NSInteger userAnswer = [theInput intValue];
            
             if (userAnswer == [question1 answer]) {
-                NSLog(@"%f", [question1 answerTime]);
                 [score incrementRight];
+                NSLog(@"Right!");
             }
             else {
-                NSLog(@"%f", [question1 answerTime]); 
-                [score incrementWrong]; 
+                [score incrementWrong];
+                NSLog(@"Wrong!"); 
             }
             NSLog(@"%@", [score giveScore]);
-        
-        
+            NSLog(@"%@", [questionManager timeOutput]);
         }
     }
     return 0;
