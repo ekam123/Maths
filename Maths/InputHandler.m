@@ -14,8 +14,8 @@
     
     NSLog(@"%@", userInput);
     
-    char input[5];
-    fgets(input, 5, stdin);
+    char input[255];
+    fgets(input, 255, stdin);
     //
     NSString *theInput = [NSString stringWithCString:input encoding:NSUTF8StringEncoding];
     
